@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+
+<h1 class="mb-4">Genre List</h1>
+<a href="/genre/create" class="btn btn-primary mb-3"> Add new product</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(product => { %>
+            <tr>
+                <td><%= product.id %></td>
+                <td><%= product.name %></td>
+                <td>
+                    <form action="/genre/<%= product.id %>?_method=DELETE" method="POST" class="d-inline" >
+                      <button type="button" class="btn btn-danger btn-sm" onclick="deleteAlert(this, <%= product.id %>)">Delete</button>
+                    </form>
+                  </td>
+            </tr>
+       <% }); %>
+    </tbody>
+</table>
+<script>
+    function deleteAlert(btn,itemId){
+        let formdel = btn.closest('form');
+        Swal.fire({
+                title: `Are you sure to delete item ${itemId}?`,
+                text: "This action cannot be undone!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Find the parent form of the button and submit it
+                    formdel.submit();
+                } else {
+                    // If canceled, log a message or handle cancellation
+                    console.log(`Delete action canceled for item ${itemId}.`);
+                }
+            });
+    }
+
+</script>
+
+<%- include('../partials/footer') %>

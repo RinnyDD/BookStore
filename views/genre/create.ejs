@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+
+<h1 class="mb-4">Add New Product</h1>
+
+<form action="/genre" method="post" class="card p-4" >
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="name" required id="name">
+    </div>
+    <button type="submit" class="btn btn-primary mb-4">Save</button>
+    <a href="/genre" class="btn btn-secondary">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>

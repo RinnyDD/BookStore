@@ -1,25 +1,51 @@
-import express from "express";
-import path from 'path';
-import { fileURLToPath } from "url";
+require('dotenv').config()
+const express = require('express');
+const app = express();
+const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
 
-var app = express();
-const __filename = fileURLToPath(import.meta.url);//get the resolve path
-const __dirname = path.dirname(__filename);
+const productRoutes = require('./routes/genreRoutes');
+const bookRoutes = require('./routes/bookRoutes');
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+// app.use(session({
+//     secret: 'cyber cadt idri idt idg',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+//   }));
+//   // Configure flash middleware
+// app.use(flash());
+  
 
-// const connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password:"root",
-//     database
-// })
 
-app.get('/test',function(req,res){
-    res.sendFile(path.join(__dirname,'views/pages','test.html'));
+app.use(session({ 
+    secret:'cyber cadt idri idt idg', 
+    saveUninitialized: true, 
+    resave: true
+})); 
+  
+// Configure flash middleware
+app.use(flash());
+
+// Make flash messages available in all views (with res.locals)
+// app.use((req, res, next) => {
+//   res.locals.messages = req.flash();
+//   next();
+// });
+
+
+app.set('view engine','ejs');
+
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/css', express.static('public/css'));
+
+app.use('/uploads', express.static('public/uploads'));
+app.use('/genre',productRoutes);
+app.use('/book',bookRoutes);
+app.listen(PORT,()=>{
+    console.log("server is running on port "+PORT);
 });
-
-app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname,'views/pages','index.html'));
-});
-
-app.listen(8080);
-console.log("Server is listening on port 8080");
