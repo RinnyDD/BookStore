@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
 
 router.get('/',indexController.getListProduct);
+router.get('/shop',indexController.shopForm);
 // router.get('/:id',indexController.getListProduct);
 
 

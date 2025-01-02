@@ -58,9 +58,9 @@ app.use('/genre',productRoutes);
 app.use('/book',bookRoutes);
 app.use('/user',registerRoutes);
 app.use('/login',loginRoutes);
-app.get('/shop',(req,res) => {
-    res.sendFile(`${publicPath}/user/shop.html`);
-});
+// app.get('/shop',(req,res) => {
+//     res.sendFile(`${publicPath}/user/shop.html`);
+// });
 app.use('/',indexRoutes);
 app.listen(PORT,()=>{
     console.log("server is running on port "+PORT);

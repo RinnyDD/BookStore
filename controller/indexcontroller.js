@@ -13,4 +13,8 @@ exports.getListProduct = async (req,res) => {
     }catch(err){
         res.status(500).send("Error fetching products");
     }
-}
+};
+exports.shopForm = (req,res)=>{
+    title = "Add to cart"
+    res.render('user/shop',{title});
+};
