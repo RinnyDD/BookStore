@@ -29,6 +29,21 @@ class Book {
         const result = await db.query('DELETE FROM books WHERE id = ?', [id]);
         return result;
       }
+
+    static async latestBook(){
+        const [rows] = await db.query('SELECT * FROM books ORDER BY id DESC ;');
+        
+        return rows;
+    }
+
+    // static async idImage(){
+    //     // const [rows] = await db.query('SELECT image FROM books WHERE GID = ? ORDER BY id DESC limit 1;', [id]);
+    //     // console.log("Query Result: ",id);
+    //     // console.log("Query Result: ",rows);
+    //     const [rows] = await db.query('SELECT * FROM books ORDER BY id DESC ;');
+    //     // console.log(rows);
+    //     return rows;
+    // }
 }
 
 

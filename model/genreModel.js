@@ -3,6 +3,7 @@ const db = require("../config/database");
 class Genre {
     static async getAll(){
         const [rows] = await db.query('SELECT * FROM genre');
+        
         return rows;
     }
     static async create(data){

@@ -1,0 +1,227 @@
+<%- include('../partials/header') %>
+
+<header>
+    <div class="navbar">
+      <div class="logo"><a href="#"><img src="/uploads/download.png" alt="Logo">FINAL <br>PROJECT</a></div>
+      <ul class="links">
+        <li><a href="#">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="shop">Shop</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+      <div id="postLoginButtons" class="hidden">
+        <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href=""><i class="fa-solid fa-user"></i></a>
+      </div>  
+      
+      <a href="#" class="act_btn" id="beCustomer">Be Our Costumer</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+    
+    <div class="dropdown_menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="about">About</a></li>
+      <li><a href="shop">Shop</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="#" class="act_btn" id="beCustomer">Be Our Costumer</a></li>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Login or Register</h2>
+        <p id="modal-description">Please enter your username and password to log in.</p>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button id="login">Submit</button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section id="welcome">
+      <h1>Welcome to our Store</h1>
+      <p>BEST SELLER <br> AND POPULAR <br> OF THE YEAR 2024</p>
+    </section>
+  </main>
+
+  <div class="slider">
+      <div class="list">
+        <% books.forEach(product => { %>
+          <div class="item">
+              <img src="<%=product.image %>" alt="">
+          </div>
+        <% }); %>
+      </div>
+    <div class="buttons">
+        <button id="prev"><</button>
+        <button id="next">></button>
+    </div>
+    <ul class="dots">
+      <% books.forEach(product => { %>
+        <li class="active"></li>
+      <% }); %>
+    </ul>
+  </div>  
+
+  <h4>Book categories</h4>
+
+  <section class="container">
+    <% for (let i=0; i < products.length ; i++) { %>
+      <div class="slider-wrapper1">
+        <h2><%=products[i].name %></h2>
+        <div class="history-slider">
+          <% for (let j=0; j < books.length ; j++) { %>
+            <% if ( books[j].GID === products[i].id) { %>
+              <img id="p<%= i %>" src="<%=books[j].image %>" alt="">
+            <% }; %>
+            <!-- <img id="p2" src="./pictures/his 2.jpg" alt="history">
+            <img id="p3" src="./pictures/his 3.jpg" alt="history"> -->
+          <% }; %>
+        </div>
+        <div class="his-nav">
+          <% for (let j=0; j < books.length ; j++) { %>
+            <% if ( books[j].GID === products[i].id) { %>
+              <a href="#"></a>
+            <% }; %>
+          <% }; %>
+        </div>
+      </div>
+    <% }; %>
+
+    
+
+  </section>
+  <h3>Our website is where stories come alive! Whether you're a lifelong book lover or just beginning your literary journey, we have something for everyone. From captivating fiction and inspiring non-fiction to thrilling mysteries and timeless classics, our carefully curated collection is designed to ignite your imagination and enrich your mind. Explore, discover, and let the pages of your next favorite book transport you to new worlds. Dive in today—your adventure awaits!</h3>
+  <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropdownMenu = document.querySelector('.dropdown_menu')
+
+    toggleBtn.onclick = function(){
+        dropdownMenu.classList.toggle('open')
+        const isOpen = dropdownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+          ? 'fa-solid fa-xmark'
+          : 'fa-solid fa-bars'
+    }
+
+        const beCustomerBtn = document.getElementById('beCustomer');
+        const postLoginButtons = document.getElementById('postLoginButtons');
+        const modal = document.getElementById('modal');
+        const loginBtn = document.getElementById('login');
+
+        // Show modal when clicking "Be Our Customer"
+        beCustomerBtn.addEventListener('click', () => {
+          modal.classList.add('show');
+        });
+
+        // Handle login and hide modal
+        loginBtn.addEventListener('click', () => {
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+
+          if (username && password) {
+            // Simulate successful login
+            modal.classList.remove('show');
+            beCustomerBtn.classList.add('hidden');
+            postLoginButtons.classList.remove('hidden');
+          } else {
+            alert('Please enter valid credentials!');
+          }
+        });
+
+        // SMALL SLIDER 
+
+        document.addEventListener('DOMContentLoaded', function () {
+          const sliderContainers = {
+            history: document.querySelector('.history-slider'),
+            manga: document.querySelector('.manga-slider'),
+            horror: document.querySelector('.horror-slider'),
+          };
+        
+          // Add event listeners to navigation dots
+          document.querySelectorAll('.his-nav a').forEach((dot, index) => {
+            dot.addEventListener('click', function (event) {
+              event.preventDefault();
+              const slideWidth = sliderContainers.history.clientWidth;
+              sliderContainers.history.scrollTo({
+                left: slideWidth * index,
+                behavior: 'smooth',
+              });
+            });
+          });
+        
+          document.querySelectorAll('.man-nav a').forEach((dot, index) => {
+            dot.addEventListener('click', function (event) {
+              event.preventDefault();
+              const slideWidth = sliderContainers.manga.clientWidth;
+              sliderContainers.manga.scrollTo({
+                left: slideWidth * index,
+                behavior: 'smooth',
+              });
+            });
+          });
+        
+          document.querySelectorAll('.hor-nav a').forEach((dot, index) => {
+            dot.addEventListener('click', function (event) {
+              event.preventDefault();
+              const slideWidth = sliderContainers.horror.clientWidth;
+              sliderContainers.horror.scrollTo({
+                left: slideWidth * index,
+                behavior: 'smooth',
+              });
+            });
+          });
+        });
+
+        //SLIDER
+
+    let slider = document.querySelector('.slider .list');
+    let items = document.querySelectorAll('.slider .list .item');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+    let dots = document.querySelectorAll('.slider .dots li');
+
+    let lengthItems = items.length - 1;
+    let active = 0;
+    next.onclick = function(){
+        active = active + 1 <= lengthItems ? active + 1 : 0;
+        reloadSlider();
+    }
+    prev.onclick = function(){
+        active = active - 1 >= 0 ? active - 1 : lengthItems;
+        reloadSlider();
+    }
+    let refreshInterval = setInterval(()=> {next.click()}, 3000);
+    function reloadSlider(){
+        slider.style.left = -items[active].offsetLeft + 'px';
+        // 
+        let last_active_dot = document.querySelector('.slider .dots li.active');
+        last_active_dot.classList.remove('active');
+        dots[active].classList.add('active');
+
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(()=> {next.click()}, 3000);
+
+        
+    }
+
+    dots.forEach((li, key) => {
+        li.addEventListener('click', ()=>{
+            active = key;
+            reloadSlider();
+        })
+    })
+    window.onresize = function(event) {
+        reloadSlider();
+    };
+
+    
+  </script>
+
+<%- include('../partials/footer') %>

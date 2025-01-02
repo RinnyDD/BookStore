@@ -1,0 +1,90 @@
+<%- include('../partials/header') %>
+
+<div class="container" id="container">
+    <div class="home-button">
+        <button onclick="window.location.href='#';">
+            <i class="lni lni-home"></i> <!-- Home Icon -->
+        </button>
+    </div>
+
+    <div class="form-container register-container">
+        <form action="/user" method="post">
+            <h1>Register here </h1>
+            <input type="text" placeholder="Name" name="name" required id="name">
+            <input type="email" placeholder="Email" name="email" required id="email">
+            <input type="password" placeholder="Password" name="password" required id="password">  
+            <button type="submit" >Register</button>
+            <span>or use your account</span>
+            <div class="social-container">
+                <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+                <a href="#" class="social"><i class="lni lni-google"></i></a>
+                <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-container login-container">
+        <form action="/login">
+            <h1>Login here </h1>
+            <input type="email" placeholder="Email" name="email" required id="email">
+            <input type="password" placeholder="Password" name="password" required id="password">
+            <div class="content">
+                <div class="checkbox">
+                    <input type="checkbox" name="checkbox" id="checkbox">
+                    <label>Remember me</label>
+                </div>
+                <div class="pass-link">
+                    <a href="#">Forgot password</a>
+                </div>
+            </div>
+            <button type="submit">Login</button>
+            <span>or use your account</span>
+            <div class="social-container">
+                <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+                <a href="#" class="social"><i class="lni lni-google"></i></a>
+                <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
+            </div>
+        </form>
+    </div>
+
+    <div class="overlay-container">
+        <div class="overlay">
+            <video autoplay muted loop class="background-video">
+                <source src="/uploads/bg.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay-panel overlay-left">
+                <h1 class="tittle">Hello <br> Friends </h1>
+                <p>If you have an account, Login here and have fun</p>
+                <button class="ghost" id="login">Login
+                    <i class="lni lni-arrow-left login"></i>
+                </button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1 class="tittle">Start your <br> journy now</h1>
+                <p>If you don't have an account yet, join us and start your journy.</p>
+                <button class="ghost" id="register">Register
+                    <i class="lni lni-arrow-right register"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const registrationButton = document.getElementById("register");
+    const loginButton = document.getElementById("login");
+    const container = document.getElementById("container");
+
+    registrationButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+
+    loginButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+
+<%- include('../partials/footer') %>

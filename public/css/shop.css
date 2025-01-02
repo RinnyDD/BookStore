@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+
+body {
+  background: linear-gradient(to bottom right, #e3edf0 0%, #9cdae5 100%); /* Same as the title */
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #282121;
+  margin: 5% 0;
+}
+
+.container {
+  width: 100%;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  background: #fbf9f9;
+  border-radius: 0 0 5px 5px;
+  padding: 25px;
+}
+
+form {
+  flex: 10;
+}
+
+.Yorder {
+  flex: 10;
+  margin-top: 15px;
+  height: 900px;
+  padding: 75px;
+  border: 1px solid #dadada;
+  background-color: #fbf9f9; /* Ensuring cart background is white */
+}
+
+.title {
+  background: linear-gradient(to bottom right, #5abdcf 0%, #70EAFF 100%);
+  border-radius: 5px 5px 0 0;
+  padding: 20px;
+  color: #f6f6f6;
+}
+
+h2 {
+  margin: 0;
+  padding-left: 15px;
+}
+
+.required {
+  color: red;
+}
+
+label, table {
+  display: block;
+  margin: 15px;
+}
+
+label > span {
+  float: left;
+  width: 25%;
+  margin-top: 12px;
+  padding-right: 10px;
+}
+
+input[type="text"], input[type="tel"], input[type="email"], select {
+  width: 70%;
+  height: 30px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dadada;
+  color: #0b0b0b;
+}
+
+table#cart {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 0px;
+}
+
+table#cart th, table#cart td {
+  border: 1px solid #3a657a;
+  padding: 10px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+table#cart th {
+  background-color: #f0f0f0;
+}
+
+#cart td:first-child {
+  text-align: left;
+}
+
+button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  background: #6bd1d8;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #b9d9e5;
+}
+
+button {
+  padding: 7.5px 7.5px;
+  background-color: #61c6cd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #417482;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+#total {
+  font-weight: bold;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+img {
+  max-width: 50px;
+  height: auto;
+}
+
+td img {
+    width: 100%; /* Make the image fill the width of the container */
+    height:100%; /* Make the image fill the height of the container */
+    object-fit: cover; /* Ensure the image covers the box while maintaining aspect ratio */
+    border-radius: 7.5px; /* Optional: Add rounded corners to the image */
+}
+#total-container {
+    color: red;
+    font-weight: bold;
+}
